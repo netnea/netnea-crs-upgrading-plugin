@@ -12,7 +12,7 @@ Step 2a: Run CRS v4 for **specific paths** and continue running CRS v3 for speci
 
 Step 2b: For the remaining requests (those not configured for CRS v3 or CRS v4), you can specify the percentage of requests for which CRS v4 should be applied (**sampling mode**).
 
-![CRS Upgrading Process](crs-upgrading-plugin.png)
+![CRS Upgrading Process](netnea-crs-upgrading-plugin.png)
 
 Once either all parts of the application (all paths) are configured for CRS v4 or no paths are configured for CRS v3 AND the sampling mode percentage is set to 100, the upgrade plugin can be removed. The following steps are required:
 1. Remove CRS v3 folder and includes in your configuration.
