@@ -1,4 +1,4 @@
-# OWASP CRS Upgrading Plugin
+# Netnea OWASP CRS Upgrading Plugin
 
 ## Description
 
