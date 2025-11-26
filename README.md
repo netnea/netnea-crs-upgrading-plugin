@@ -111,7 +111,7 @@ Include conf/crs4/plugins/*-after.conf          <---
 As in any other plugin, the netnea-crs-upgrading-plugin can be disabled by deleting the comment of this rule:
 ```
 SecRule &TX:netnea-crs-upgrading-plugin_enabled "@eq 0" \
-  "id:9525010,\
+  "id:9527010,\
   phase:1,\
   pass,\
   nolog,\
@@ -119,15 +119,15 @@ SecRule &TX:netnea-crs-upgrading-plugin_enabled "@eq 0" \
 ```
 
 Step 1: Parallel Mode:  
-The following rule 9525100 removes the inbound and outbound blocking rules of CRS v4 so that all CRS v4 rules are executed but the blocking rules are not. This allows us to run CRS v4 rules in logonly mode and CRS v3 in blocking mode (step 1 of the process as decribed above).  
+The following rule 9527100 removes the inbound and outbound blocking rules of CRS v4 so that all CRS v4 rules are executed but the blocking rules are not. This allows us to run CRS v4 rules in logonly mode and CRS v3 in blocking mode (step 1 of the process as decribed above).
 Comment out this rule if you want to exit parallel mode and block some of the requests (the configuration is explained later).
 ```
-# Rule 9525100 enables the parallel mode of CRS3 and CRS4
+# Rule 9527100 enables the parallel mode of CRS3 and CRS4
 # by removing the blocking rules of CRS4.
 # It's step 1 of the upgrading process as described in the README.
 #
 SecAction \
-  "id:9525100,\
+  "id:9527100,\
    phase:1,\
    pass,\
    nolog,\
@@ -136,19 +136,19 @@ SecAction \
    tag:'netnea-crs-upgrading-plugin',\
    ver:'netnea-crs-upgrading-plugin/1.0.0',\
    ctl:ruleRemoveById=8949110,ctl:ruleRemoveById=8959100,\
-   ctl:ruleRemoveById=9525101-9525799"
+   ctl:ruleRemoveById=9527101-9527799"
 ```
 
 Step 2b: Sampling Mode:  
-The following rule 9525200 specifies the percentage of requests that should run through CRS v4. The rest should run through CRS v3 (step 2b of the process as described above).
+The following rule 9527200 specifies the percentage of requests that should run through CRS v4. The rest should run through CRS v3 (step 2b of the process as described above).
 ```
 # Step 2 of upgrading process:
-# Rule 9525100 sets the percentage of requests that should run through CRS4
+# Rule 9527100 sets the percentage of requests that should run through CRS4
 # A value 0, for example, means that all requests run through CRS3.
 # A value of 100 means, all requests run through CRS4.
 #
 SecAction \
-  "id:9525200,\
+  "id:9527200,\
    phase:1,\
    pass,\
    nolog,\
@@ -174,9 +174,9 @@ Example paths_crs4.data:
 To avoid unnecessary log entries, the netnea-crs-upgrading-plugin rules are set to nolog. A single reporting log entry per request can be created by commenting out the following reporting rule in netnea-crs-upgrading-after.conf.
 
 ```
-# Rule 9525800 can be uncommented if logging of the netnea-crs-upgrading-plugin is needed
+# Rule 9527800 can be uncommented if logging of the netnea-crs-upgrading-plugin is needed
 SecAction \
-    "id:9525800,\
+    "id:9527800,\
     phase:5,\
     pass,\
     t:none,\
