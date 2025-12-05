@@ -34,7 +34,8 @@ Once either all parts of the application (all paths) are configured for CRS v4 o
 
 * If rule exclusions via tags are used, we also have to rename the tags:
 
-`sed -i '' "s/tag:'\(attack-[a-z-]*\)/\1_crs4/g" rules/RE*.conf`
+`sed -i '' "s/tag:'\(attack-[a-z-]*\)/tag:'\1_crs4/g" rules/RE*.conf`  
+`sed -i '' "s/tag:'\(OWASP_CRS\)/tag:'\1_crs4/g" rules/RE*.conf`
 
 ### crs-setup.conf
 
