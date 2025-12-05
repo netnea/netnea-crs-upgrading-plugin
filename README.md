@@ -26,11 +26,15 @@ Once either all parts of the application (all paths) are configured for CRS v4 o
 * Download, untar and install the latest OWASP CRS v4
 * Change the rule ids of CRS v4 from range 9xx'xxx to 8'9xx'xxx
 
-`sed -i '' 's/id:\(9.....\)/id:8\1/' /opt/apache/conf/crs4/rules/RE*.conf`
+`sed -i '' 's/id:\(9.....\)/id:8\1/' rules/RE*.conf`
 
 * Change the name of the variables `tx.outbound_anomaly_score_plx`
 
-`sed -i '' 's/\(tx.outbound_anomaly_score_pl.\)/\1_crs4/g' /opt/apache/conf/crs4/rules/RES*.conf`
+`sed -i '' 's/\(tx.outbound_anomaly_score_pl.\)/\1_crs4/g' rules/RES*.conf`
+
+* If rule exclusions via tags are used, we also have to rename the tags:
+
+`sed -i '' "s/tag:'\(attack-[a-z-]*\)/\1_crs4/g" rules/RE*.conf`
 
 ### crs-setup.conf
 
